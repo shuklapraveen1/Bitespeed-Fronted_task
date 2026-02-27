@@ -148,7 +148,7 @@ function Flow() {
           onConnect={onConnect}
           onDrop={onDrop}
           onDragOver={onDragOver}
-          onNodeClick={(event, node) => setSelectedNodeId(node.id)}
+          onNodeClick={(_, node) => setSelectedNodeId(node.id)}
           nodeTypes={nodeTypes}
         >
           <Background gap={20} size={1} color="#e80505" />
