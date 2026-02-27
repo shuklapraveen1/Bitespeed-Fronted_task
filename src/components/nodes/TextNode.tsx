@@ -10,17 +10,33 @@ function TextNode({ data }: TextNodeProps) {
   return (
     <div
       style={{
-            padding: 12,
-            borderRadius: 10,
-            background: "white",
-            border: "1px solid #00acc1",
-            width: 220,
-            boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
-            }}
+        padding: 16,
+        borderRadius: 14,
+        background: "white",
+        border: "1px solid #000000",
+        width: 240,
+        boxShadow: "0 6px 18px rgba(30, 30, 32, 0.06)",
+      }}
     >
-      <strong>Send Message</strong>
+      <div
+        style={{
+          fontSize: 12,
+          fontWeight: 600,
+          color: "#1b1c1c",
+          marginBottom: 6,
+          textTransform: "uppercase",
+        }}
+      >
+        Message
+      </div>
 
-      <div style={{ marginTop: 8 }}>
+      <div
+        style={{
+          fontSize: 14,
+          color: "#3571f1",
+          lineHeight: 1.4,
+        }}
+      >
         {data.text}
       </div>
 

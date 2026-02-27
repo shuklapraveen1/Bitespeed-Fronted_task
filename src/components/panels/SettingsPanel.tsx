@@ -20,22 +20,55 @@ function SettingsPanel({ node, setNodes, onBack }: Props) {
   return (
     <div
       style={{
-        width: 250,
-        padding: 20,
-        borderLeft: "1px solid #ddd",
-        background: "#fafafa",
+        width: 280,
+        padding: 24,
+        borderLeft: "1px solid #1f2937",
+        background: "#111827",
+        color: "white",
       }}
     >
-      <button onClick={onBack}>⬅ Back</button>
+      <button
+        onClick={onBack}
+        style={{
+          background: "none",
+          border: "none",
+          cursor: "pointer",
+          fontWeight: 500,
+          marginBottom: 20,
+          color: "#9ca3af",
+        }}
+      >
+        ← Back
+      </button>
 
-      <h3>Message Settings</h3>
+      <h2
+        style={{
+          fontSize: 18,
+          fontWeight: 600,
+          marginBottom: 20,
+        }}
+      >
+        Message Settings
+      </h2>
 
-      <label>Text</label>
+      <label style={{ fontSize: 14, fontWeight: 500 }}>
+        Text
+      </label>
+
       <input
         type="text"
         value={node?.data?.text || ""}
         onChange={handleChange}
-        style={{ width: "100%", marginTop: 5 }}
+        style={{
+          width: "100%",
+          marginTop: 8,
+          padding: "10px 12px",
+          borderRadius: 8,
+          border: "1px solid #374151",
+          background: "#1f2937",
+          color: "white",
+          outline: "none",
+        }}
       />
     </div>
   );

@@ -7,7 +7,6 @@ import ReactFlow, {
   addEdge,
   useReactFlow,
   type Connection,
-  type Edge,
   ReactFlowProvider,
 } from "reactflow";
 import "reactflow/dist/style.css";
@@ -31,17 +30,17 @@ function Flow() {
 
   const selectedNode = nodes.find((n) => n.id === selectedNodeId);
 
-  // Restrict one outgoing edge per node
+  // Restrict one outgoing edge
   const onConnect = useCallback(
     (params: Connection) => {
       setEdges((existingEdges) => {
         if (!params.source) return existingEdges;
 
-        const outgoingEdges = existingEdges.filter(
+        const outgoing = existingEdges.filter(
           (edge) => edge.source === params.source
         );
 
-        if (outgoingEdges.length >= 1) {
+        if (outgoing.length >= 1) {
           alert("Only one outgoing connection allowed per node.");
           return existingEdges;
         }
@@ -52,13 +51,11 @@ function Flow() {
     []
   );
 
-  // Allow drop
   const onDragOver = (event: React.DragEvent) => {
     event.preventDefault();
     event.dataTransfer.dropEffect = "move";
   };
 
-  // Handle drop
   const onDrop = (event: React.DragEvent) => {
     event.preventDefault();
 
@@ -80,7 +77,6 @@ function Flow() {
     setNodes((nds) => nds.concat(newNode));
   };
 
-  // Save validation
   const handleSave = () => {
     setError(null);
 
@@ -108,14 +104,15 @@ function Flow() {
           <div
             style={{
               position: "absolute",
-              top: 10,
+              top: 20,
               left: "50%",
               transform: "translateX(-50%)",
-              background: "#ff4d4f",
+              background: "#ef4444",
               color: "white",
-              padding: "8px 16px",
-              borderRadius: 4,
+              padding: "10px 18px",
+              borderRadius: 8,
               zIndex: 20,
+              boxShadow: "0 6px 18px rgba(0,0,0,0.1)",
             }}
           >
             {error}
@@ -127,18 +124,20 @@ function Flow() {
           onClick={handleSave}
           style={{
             position: "absolute",
-            top: 10,
-            right: 10,
+            top: 20,
+            right: 20,
             zIndex: 10,
-            padding: "8px 12px",
-            background: "#00acc1",
+            padding: "10px 18px",
+            background: "#2563eb",
             color: "white",
             border: "none",
-            borderRadius: 4,
+            borderRadius: 10,
+            fontWeight: 500,
             cursor: "pointer",
+            boxShadow: "0 4px 12px rgba(37, 99, 235, 0.3)",
           }}
         >
-          Save
+          Save Flow
         </button>
 
         <ReactFlow
@@ -152,9 +151,13 @@ function Flow() {
           onNodeClick={(event, node) => setSelectedNodeId(node.id)}
           nodeTypes={nodeTypes}
         >
-          <Background />
+          <Background gap={20} size={1} color="#e80505" />
           <Controls />
-          <MiniMap />
+          <MiniMap
+          style={{
+            backgroundColor: "#111827",
+          }}
+          />
         </ReactFlow>
       </div>
 
